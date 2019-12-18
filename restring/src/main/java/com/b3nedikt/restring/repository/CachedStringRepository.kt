@@ -32,11 +32,13 @@ class CachedStringRepository(val cacheRepository: StringRepository,
     override fun setStrings(locale: Locale, strings: Map<String, CharSequence>) {
         cacheRepository.setStrings(locale, strings)
         persistentRepository.setStrings(locale, strings)
+        supportedLocales = supportedLocales + locale
     }
 
     override fun setString(locale: Locale, key: String, value: CharSequence) {
         cacheRepository.setString(locale, key, value)
         persistentRepository.setString(locale, key, value)
+        supportedLocales = supportedLocales + locale
     }
 
     override fun getString(locale: Locale, key: String): CharSequence? =
@@ -52,6 +54,7 @@ class CachedStringRepository(val cacheRepository: StringRepository,
             CharSequence>) {
         cacheRepository.setQuantityString(locale, key, quantityString)
         persistentRepository.setQuantityString(locale, key, quantityString)
+        supportedLocales = supportedLocales + locale
     }
 
     override fun getQuantityStrings(locale: Locale): Map<String, Map<PluralKeyword, CharSequence>> =
@@ -61,6 +64,7 @@ class CachedStringRepository(val cacheRepository: StringRepository,
             CharSequence>>) {
         cacheRepository.setQuantityStrings(locale, quantityStrings)
         persistentRepository.setQuantityStrings(locale, quantityStrings)
+        supportedLocales = supportedLocales + locale
     }
 
     override fun getStringArray(locale: Locale, key: String): Array<CharSequence>? =
@@ -69,6 +73,7 @@ class CachedStringRepository(val cacheRepository: StringRepository,
     override fun setStringArray(locale: Locale, key: String, stringArray: Array<CharSequence>) {
         cacheRepository.setStringArray(locale, key, stringArray)
         persistentRepository.setStringArray(locale, key, stringArray)
+        supportedLocales = supportedLocales + locale
     }
 
     override fun getStringArrays(locale: Locale): Map<String, Array<CharSequence>> =
@@ -77,5 +82,6 @@ class CachedStringRepository(val cacheRepository: StringRepository,
     override fun setStringArrays(locale: Locale, stringArrays: Map<String, Array<CharSequence>>) {
         cacheRepository.setStringArrays(locale, stringArrays)
         persistentRepository.setStringArrays(locale, stringArrays)
+        supportedLocales = supportedLocales + locale
     }
 }
