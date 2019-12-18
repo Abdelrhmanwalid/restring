@@ -2,6 +2,7 @@ package com.b3nedikt.restring
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.os.Build
 import android.view.View
 import com.b3nedikt.restring.repository.CachedStringRepository
 import com.b3nedikt.restring.repository.MemoryStringRepository
@@ -32,7 +33,7 @@ object Restring {
     internal val viewTransformerManager: ViewTransformerManager by lazy {
         ViewTransformerManager().apply {
             registerTransformer(TextViewViewTransformer)
-            registerTransformer(ToolbarViewTransformer)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) registerTransformer(ToolbarViewTransformer)
             registerTransformer(SupportToolbarViewTransformer)
             registerTransformer(BottomNavigationViewViewTransformer)
         }
